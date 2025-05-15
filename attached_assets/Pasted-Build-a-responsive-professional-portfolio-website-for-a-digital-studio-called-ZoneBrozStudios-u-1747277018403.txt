@@ -1,0 +1,83 @@
+Build a responsive, professional portfolio website for a digital studio called **ZoneBrozStudios** using a modern "Creative Studio Grid" theme.
+
+The design should follow a **clean, modular layout** with a strong focus on **visual hierarchy, grid alignment, and hover interactivity**.
+
+---
+
+🖼️ Overall Style:
+
+- Layout: Grid-based sections with white space and soft elevation/shadows
+- Color palette: 
+  - Background: Pure white (#ffffff) or very light grey (#f9f9f9)
+  - Accents: Soft gradient blends (e.g., blue #5f72be → purple #9b59b6)
+- Fonts: 
+  - Use **Poppins** or **Manrope** from Google Fonts (semi-bold headings, light body)
+- Animation:
+  - Smooth scrolling
+  - Subtle fade-in or scale-up on project cards when in viewport
+  - Hover transitions (box-shadow pop, slight tilt, color overlay)
+- Mobile responsiveness: Prioritize mobile-first design
+
+---
+
+📁 Pages to Include:
+
+1. **Homepage (index.html)**
+   - Hero section:
+     - Studio name: **ZoneBrozStudios**
+     - Tagline: *"We Build Bold. Code Clean. Deliver Fast."*
+     - Button: View Projects (scroll to projects section)
+     - Background: gradient or light image overlay
+   - Intro paragraph: short mission of the studio
+   - Featured project preview grid (3-4 items)
+   - Sticky header with logo and nav links
+
+2. **About Page (about.html)**
+   - Founder profile: name, short bio, image (placeholder)
+   - Studio mission and values
+   - Tech stack logos: React, Node.js, Flutter, Firebase, Figma, etc.
+
+3. **Projects Page (projects.html)**
+   - Responsive 2–3 column grid layout
+   - Each project card:
+     - Project name
+     - Short one-line description
+     - Tags for tech used
+     - Thumbnail image
+     - On hover: overlay with "View More" button
+     - Link to GitHub and/or live demo
+
+4. **Contact Page (contact.html)**
+   - Clean contact form:
+     - Name, Email, Message
+     - Submit button (can be functional with JS or mockup)
+   - Studio contact email: `contact@zonebrozstudios.com`
+   - Social icons for GitHub and LinkedIn (Font Awesome or inline SVG)
+   - Minimalist footer
+
+---
+
+📁 Folder Structure:
+
+- `index.html`  
+- `about.html`  
+- `projects.html`  
+- `contact.html`  
+- `/css/style.css`  
+- `/js/script.js`  
+- `/images/` (for profile pic, project thumbnails, icons)
+
+---
+
+✅ Functionality & Features:
+
+- Mobile navigation menu (hamburger on small screens)
+- Smooth scrolling between sections
+- Sticky nav bar on scroll
+- Light/dark mode toggle (optional, bonus)
+- SEO tags and social preview meta in head
+- Performance optimized (image sizing, CSS clean)
+
+---
+
+🚀 Deliver clean, scalable, and modular HTML/CSS/JS code using semantic structure.
