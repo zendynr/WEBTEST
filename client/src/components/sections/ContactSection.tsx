@@ -5,12 +5,11 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { 
   Mail, 
-  MapPin, 
   Clock, 
   Github, 
   Linkedin, 
-  Dribbble, 
-  Framer 
+  Youtube, 
+  Instagram 
 } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
@@ -76,11 +75,6 @@ const ContactSection = () => {
       detail: "contact@zonebrozstudios.com",
     },
     {
-      icon: <MapPin className="h-5 w-5 text-white" />,
-      title: "Our Location",
-      detail: "San Francisco, California",
-    },
-    {
       icon: <Clock className="h-5 w-5 text-white" />,
       title: "Working Hours",
       detail: "Monday - Friday: 9am - 6pm PST",
@@ -90,8 +84,8 @@ const ContactSection = () => {
   const socialLinks = [
     { icon: <Github className="h-5 w-5" />, href: "#", label: "GitHub" },
     { icon: <Linkedin className="h-5 w-5" />, href: "#", label: "LinkedIn" },
-    { icon: <Dribbble className="h-5 w-5" />, href: "#", label: "Dribbble" },
-    { icon: <Framer className="h-5 w-5" />, href: "#", label: "Behance" },
+    { icon: <Instagram className="h-5 w-5" />, href: "#", label: "Instagram" },
+    { icon: <Youtube className="h-5 w-5" />, href: "#", label: "YouTube" },
   ];
 
   return (

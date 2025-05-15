@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { 
   SiReact, 
   SiNodedotjs, 
-  SiFigma, 
   SiFirebase, 
   SiSass, 
   SiFlutter, 
@@ -14,7 +13,6 @@ import { GradientText } from "@/components/ui/gradient-text";
 const techStack = [
   { icon: <SiReact />, name: "React" },
   { icon: <SiNodedotjs />, name: "Node.js" },
-  { icon: <SiFigma />, name: "Figma" },
   { icon: <SiJavascript />, name: "JavaScript" },
   { icon: <SiFirebase />, name: "Firebase" },
   { icon: <SiSass />, name: "SASS" },
