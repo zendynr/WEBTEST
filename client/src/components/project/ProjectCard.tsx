@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Project } from "@/lib/data";
+import { useLocation } from "wouter";
 
 interface ProjectCardProps {
   project: Project;
@@ -9,6 +10,12 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({ project, index }: ProjectCardProps) => {
+  const [, setLocation] = useLocation();
+
+  const handleClick = () => {
+    setLocation(`/projects/${project.id}`);
+  };
+
   return (
     <motion.div
       className="cursor-pointer"
@@ -17,6 +24,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ y: -5 }}
+      onClick={handleClick}
     >
       <Card className="overflow-hidden shadow-md hover:shadow-xl transition-all">
         <div className="relative">
@@ -30,28 +38,28 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
               <p className="mb-4">{project.description}</p>
               <div className="flex space-x-4">
                 {project.demoUrl && (
-                  <a 
-                    href={project.demoUrl} 
+                  <button 
                     className="bg-white text-[#5f72be] px-4 py-2 rounded-full font-medium hover:bg-opacity-90 transition-colors inline-flex items-center"
-                    onClick={(e) => e.stopPropagation()}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      window.open(project.demoUrl, '_blank', 'noopener,noreferrer');
+                    }}
                   >
                     <ExternalLink className="h-4 w-4 mr-1" />
                     View Demo
-                  </a>
+                  </button>
                 )}
                 {project.githubUrl && (
-                  <a 
-                    href={project.githubUrl} 
+                  <button 
                     className="border border-white text-white px-4 py-2 rounded-full font-medium hover:bg-white hover:bg-opacity-10 transition-colors inline-flex items-center"
-                    onClick={(e) => e.stopPropagation()}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      window.open(project.githubUrl, '_blank', 'noopener,noreferrer');
+                    }}
                   >
                     <Github className="h-4 w-4 mr-1" />
                     GitHub
-                  </a>
+                  </button>
                 )}
               </div>
             </div>

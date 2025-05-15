@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "wouter";
 import { GradientText } from "@/components/ui/gradient-text";
 import ProjectCard from "@/components/project/ProjectCard";
 import ProjectFilter from "@/components/project/ProjectFilter";
@@ -47,9 +46,7 @@ const ProjectsSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             {filteredProjects.map((project, index) => (
-              <Link key={project.id} href={`/projects/${project.id}`}>
-                <ProjectCard project={project} index={index} />
-              </Link>
+              <ProjectCard key={project.id} project={project} index={index} />
             ))}
           </motion.div>
         </div>
