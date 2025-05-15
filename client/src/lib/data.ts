@@ -41,18 +41,6 @@ export const projects: Project[] = [
   },
   {
     id: 3,
-    title: "EcoVibe Brand Identity",
-    shortDescription: "Eco-friendly lifestyle brand design",
-    description: "Complete brand identity design for an eco-friendly lifestyle company",
-    longDescription: "We developed a comprehensive brand identity for EcoVibe, including logo design, typography, color palette, and brand guidelines. The design reflects the company's commitment to sustainability and eco-friendly practices while maintaining a modern and appealing aesthetic.",
-    category: "branding",
-    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80",
-    tags: ["Branding", "Logo Design", "Packaging"],
-    technologies: ["Adobe Illustrator", "Adobe Photoshop", "Figma", "InDesign", "Brand Strategy"],
-    demoUrl: "https://example.com/ecovibe-casestudy",
-  },
-  {
-    id: 4,
     title: "Fake Intimidation – Streetwear Brand",
     shortDescription: "A fashion label critiquing luxury culture through bold minimalist design.",
     description: "A conceptual clothing brand focused on redefining authenticity in fashion.",
