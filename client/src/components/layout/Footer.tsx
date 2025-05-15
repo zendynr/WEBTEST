@@ -12,16 +12,16 @@ const Footer = () => {
           
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
             <Link href="/">
-              <a className="hover:text-gray-200 transition-colors">Home</a>
+              <div className="hover:text-gray-200 transition-colors cursor-pointer">Home</div>
             </Link>
             <Link href="/about">
-              <a className="hover:text-gray-200 transition-colors">About</a>
+              <div className="hover:text-gray-200 transition-colors cursor-pointer">About</div>
             </Link>
             <Link href="/projects">
-              <a className="hover:text-gray-200 transition-colors">Projects</a>
+              <div className="hover:text-gray-200 transition-colors cursor-pointer">Projects</div>
             </Link>
             <Link href="/contact">
-              <a className="hover:text-gray-200 transition-colors">Contact</a>
+              <div className="hover:text-gray-200 transition-colors cursor-pointer">Contact</div>
             </Link>
           </div>
         </div>
