@@ -26,9 +26,8 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="border-t border-white border-opacity-20 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="opacity-80 text-sm mb-4 md:mb-0">© {new Date().getFullYear()} ZoneBrozStudios. All rights reserved.</p>
-          <p className="opacity-80 text-sm">Designed with ❤️ in San Francisco</p>
+        <div className="border-t border-white border-opacity-20 mt-8 pt-8 flex justify-center items-center">
+          <p className="opacity-80 text-sm">© {new Date().getFullYear()} ZoneBrozStudios. All rights reserved.</p>
         </div>
       </div>
     </footer>
