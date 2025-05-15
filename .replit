@@ -15,7 +15,7 @@ localPort = 5000
 externalPort = 80
 
 [workflows]
-runButton = "Full Stack Dev"
+runButton = "Dev"
 
 [[workflows.workflow]]
 name = "Project"
@@ -47,3 +47,16 @@ args = "cd frontend && npm run dev"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "cd backend && npm run dev"
+
+[[workflows.workflow]]
+name = "Dev"
+author = 42355479
+mode = "parallel"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run dev"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd frontend && npm run dev"
