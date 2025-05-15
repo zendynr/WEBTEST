@@ -30,7 +30,6 @@ import { GradientButton } from "@/components/ui/gradient-button";
 const contactFormSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters" }),
   email: z.string().email({ message: "Please enter a valid email address" }),
-  subject: z.string().min(3, { message: "Subject must be at least 3 characters" }),
   message: z.string().min(10, { message: "Message must be at least 10 characters" }),
 });
 
@@ -45,7 +44,6 @@ const ContactSection = () => {
     defaultValues: {
       name: "",
       email: "",
-      subject: "",
       message: "",
     },
   });
@@ -53,27 +51,16 @@ const ContactSection = () => {
   async function onSubmit(data: ContactFormValues) {
     setIsSubmitting(true);
     try {
-      const response = await apiRequest("POST", "/api/contact", data);
-      
-      // Clear the form on success
-      form.reset();
-      
-      // Show success toast
+      await apiRequest("POST", "/api/contact", data);
       toast({
         title: "Message sent successfully!",
         description: "We'll get back to you as soon as possible.",
       });
-      
-      console.log("Contact form submission successful:", response);
+      form.reset();
     } catch (error) {
-      console.error("Contact form submission error:", error);
-      
-      // Show error toast with more specific message if available
       toast({
         title: "Error sending message",
-        description: error instanceof Error 
-          ? error.message 
-          : "Please try again later or email us directly at contact@zonebrozstudios.com",
+        description: "Please try again later or email us directly.",
         variant: "destructive",
       });
     } finally {
@@ -154,20 +141,6 @@ const ContactSection = () => {
                             <FormLabel>Email Address</FormLabel>
                             <FormControl>
                               <Input placeholder="john@example.com" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      
-                      <FormField
-                        control={form.control}
-                        name="subject"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Subject</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Project Inquiry" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
