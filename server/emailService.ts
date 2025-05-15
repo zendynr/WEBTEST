@@ -54,7 +54,8 @@ export async function sendContactEmail(message: ContactMessage): Promise<boolean
     const info = await transporter.sendMail({
       from: `"ZoneBrozStudios Website" <${EMAIL_USER}>`,
       to: EMAIL_RECIPIENT,
-      subject: `New Contact: ${message.subject}`,
+      replyTo: message.email,
+      subject: `[Website Contact] ${message.subject} - from ${message.name}`,
       html: emailContent
     });
     
