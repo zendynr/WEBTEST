@@ -3,7 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { z } from "zod";
 import { insertContactMessageSchema } from "@shared/schema";
-import { sendContactNotification, sendContactConfirmation } from "./email";
+import { sendContactNotification, sendContactConfirmation } from "./email-sendgrid";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // API routes prefix with /api
