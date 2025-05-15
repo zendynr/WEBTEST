@@ -1,6 +1,7 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import { initEmailConfig } from "./emailService";
 
 const app = express();
 app.use(express.json());
@@ -37,6 +38,14 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  // Initialize email configuration
+  const emailConfigured = initEmailConfig();
+  if (emailConfigured) {
+    log('Email service initialized successfully');
+  } else {
+    log('Email service not configured completely. Contact form emails will not be sent.');
+  }
+  
   const server = await registerRoutes(app);
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
