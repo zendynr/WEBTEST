@@ -4,7 +4,7 @@ import { GradientButton } from "@/components/ui/gradient-button";
 
 const HeroSection = () => {
   return (
-    <section id="home" className="relative pt-32 pb-20 md:py-40">
+    <section id="home" className="relative pt-32 pb-20 md:py-40 flex items-center min-h-screen">
       <div 
         className="absolute inset-0 bg-cover bg-center opacity-10" 
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&h=1080&q=80')" }}
