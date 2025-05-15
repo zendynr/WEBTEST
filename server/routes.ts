@@ -3,7 +3,6 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { z } from "zod";
 import { insertContactMessageSchema } from "@shared/schema";
-import { sendContactEmail } from "./emailService";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // API routes prefix with /api
