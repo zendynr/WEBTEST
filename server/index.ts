@@ -1,7 +1,6 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
-import { initEmailService } from "./emailService";
 
 const app = express();
 app.use(express.json());
@@ -38,14 +37,6 @@ app.use((req, res, next) => {
 });
 
 (async () => {
-  // Initialize Email Service with Google Workspace
-  const emailConfigured = initEmailService();
-  if (emailConfigured) {
-    log('Email service initialized successfully for contact@zonebrozstudios.com');
-  } else {
-    log('Email credentials missing. Contact form emails will not be sent.');
-  }
-  
   const server = await registerRoutes(app);
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
