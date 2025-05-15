@@ -22,12 +22,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Store the contact message in the database
       const contactMessage = await storage.createContactMessage(result.data);
       
-      // Log the contact form submission (removed email sending)
+      // Send contact form submission via SendGrid
       try {
-        await sendContactEmail(contactMessage);
-        console.log('Contact form submission recorded successfully');
+        const emailSent = await sendContactEmail(contactMessage);
+        if (emailSent) {
+          console.log('Contact form email sent successfully to contact@zonebrozstudios.com');
+        } else {
+          console.warn('Failed to send contact form email notification');
+        }
       } catch (error) {
-        console.error('Error logging contact form submission:', error);
+        console.error('Error sending contact form email:', error);
+        // Continue execution even if email fails as we've stored the message in the database
       }
       
       return res.status(200).json({ 

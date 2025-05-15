@@ -1,49 +1,33 @@
-import nodemailer from 'nodemailer';
+import sgMail from '@sendgrid/mail';
 import { ContactMessage } from '@shared/schema';
 
-// Contact email address (where notifications will be sent)
+// Constant for the recipient email address
 const CONTACT_EMAIL = 'contact@zonebrozstudios.com';
 
-// These will be populated from environment variables
-let EMAIL_USER = '';
-let EMAIL_APP_PASSWORD = '';
-
-// Initialize email configuration
-export function initEmailService(): boolean {
-  EMAIL_USER = process.env.EMAIL_USER || '';
-  EMAIL_APP_PASSWORD = process.env.EMAIL_APP_PASSWORD || '';
+// Check if SendGrid API key exists and initialize the service
+export function initSendGrid(): boolean {
+  const apiKey = process.env.SENDGRID_API_KEY;
   
-  // Validate email configuration
-  if (!EMAIL_USER || !EMAIL_APP_PASSWORD) {
-    console.warn('Email configuration is incomplete. Contact form emails will not be sent.');
+  if (!apiKey) {
+    console.warn('SendGrid API key is missing. Contact form emails will not be sent.');
     return false;
   }
   
-  console.log('Email service configured successfully');
+  sgMail.setApiKey(apiKey);
+  console.log('SendGrid service initialized successfully');
   return true;
 }
 
-// Send email using nodemailer and a Google Workspace account
+// Send contact form submission via SendGrid
 export async function sendContactEmail(message: ContactMessage): Promise<boolean> {
   try {
-    // Check if credentials are available
-    if (!EMAIL_USER || !EMAIL_APP_PASSWORD) {
-      console.error('Email credentials missing. Contact form email will not be sent.');
+    const apiKey = process.env.SENDGRID_API_KEY;
+    if (!apiKey) {
+      console.error('SendGrid API key is missing. Cannot send email.');
       return false;
     }
     
-    // Create transporter
-    const transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 587,
-      secure: false,
-      auth: {
-        user: EMAIL_USER,
-        pass: EMAIL_APP_PASSWORD
-      }
-    });
-    
-    // Create a nicely formatted HTML email
+    // Create a formatted HTML email body
     const emailHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; background-color: #f9f9f9;">
         <h2 style="color: #5f72be; border-bottom: 2px solid #5f72be; padding-bottom: 10px;">New Contact Form Submission</h2>
@@ -78,20 +62,25 @@ export async function sendContactEmail(message: ContactMessage): Promise<boolean
       </div>
     `;
     
-    // Send email
-    const info = await transporter.sendMail({
-      from: `"ZoneBrozStudios Website" <${EMAIL_USER}>`,
+    // Configure email message
+    const msg = {
       to: CONTACT_EMAIL,
+      from: {
+        email: 'noreply@zonebrozstudios.com',
+        name: 'ZoneBrozStudios Website'
+      },
       replyTo: message.email,
       subject: `[Website Contact] ${message.subject} - from ${message.name}`,
       text: `Name: ${message.name}\nEmail: ${message.email}\nSubject: ${message.subject}\n\nMessage:\n${message.message}`,
-      html: emailHtml
-    });
+      html: emailHtml,
+    };
     
-    console.log('Contact form email sent successfully:', info.messageId);
+    // Send email via SendGrid
+    await sgMail.send(msg);
+    console.log('Contact form email sent successfully via SendGrid');
     return true;
   } catch (error) {
-    console.error('Failed to send contact form email:', error);
+    console.error('Failed to send email via SendGrid:', error);
     return false;
   }
 }
