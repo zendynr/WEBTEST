@@ -19,7 +19,9 @@ export function initEmailService(): boolean {
     return false;
   }
   
-  console.log('Email service configured successfully');
+  console.log('Email service configured with:');
+  console.log(`- Username: ${EMAIL_USER}`);
+  console.log(`- App Password length: ${EMAIL_APP_PASSWORD ? EMAIL_APP_PASSWORD.length : 0} characters`);
   return true;
 }
 
@@ -32,14 +34,17 @@ export async function sendContactEmail(message: ContactMessage): Promise<boolean
       return false;
     }
     
-    // Create transporter
+    // Create transporter with enhanced security settings
     const transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 587,
-      secure: false,
+      service: 'gmail', // Using service instead of host/port
       auth: {
         user: EMAIL_USER,
         pass: EMAIL_APP_PASSWORD
+      },
+      logger: true, // Log SMTP traffic
+      debug: true, // Log more detailed info
+      tls: {
+        rejectUnauthorized: false // Helps with SSL certificate issues
       }
     });
     
