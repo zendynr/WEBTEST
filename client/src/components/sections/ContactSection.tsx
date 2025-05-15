@@ -53,16 +53,27 @@ const ContactSection = () => {
   async function onSubmit(data: ContactFormValues) {
     setIsSubmitting(true);
     try {
-      await apiRequest("POST", "/api/contact", data);
+      const response = await apiRequest("POST", "/api/contact", data);
+      
+      // Clear the form on success
+      form.reset();
+      
+      // Show success toast
       toast({
         title: "Message sent successfully!",
         description: "We'll get back to you as soon as possible.",
       });
-      form.reset();
+      
+      console.log("Contact form submission successful:", response);
     } catch (error) {
+      console.error("Contact form submission error:", error);
+      
+      // Show error toast with more specific message if available
       toast({
         title: "Error sending message",
-        description: "Please try again later or email us directly.",
+        description: error instanceof Error 
+          ? error.message 
+          : "Please try again later or email us directly at contact@zonebrozstudios.com",
         variant: "destructive",
       });
     } finally {
