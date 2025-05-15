@@ -209,7 +209,7 @@ const ContactSection = () => {
                       {socialLinks.map((link, index) => (
                         <a 
                           key={index} 
-                          href={link.href} 
+                          href={link.label === "GitHub" ? "https://github.com/zendynr" : link.href} 
                           className="bg-gradient-to-r from-[#5f72be] to-[#9b59b6] p-3 rounded-full text-white hover:shadow-lg transition-all"
                           aria-label={link.label}
                         >

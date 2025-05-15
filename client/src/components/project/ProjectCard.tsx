@@ -54,7 +54,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
                     className="border border-white text-white px-4 py-2 rounded-full font-medium hover:bg-white hover:bg-opacity-10 transition-colors inline-flex items-center"
                     onClick={(e) => {
                       e.stopPropagation();
-                      window.open(project.githubUrl, '_blank', 'noopener,noreferrer');
+                      window.open('https://github.com/zendynr', '_blank', 'noopener,noreferrer');
                     }}
                   >
                     <Github className="h-4 w-4 mr-1" />
