@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { z } from "zod";
 import { insertContactMessageSchema } from "@shared/schema";
+import { sendContactNotification, sendContactConfirmation } from "./email";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // API routes prefix with /api
@@ -25,6 +26,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const contactMessage = await storage.createContactMessage(result.data);
       
       console.log("Contact form stored successfully with ID:", contactMessage.id);
+      
+      // Send email notification to site owner
+      try {
+        const notificationSent = await sendContactNotification(contactMessage);
+        console.log("Admin notification email sent:", notificationSent);
+      } catch (emailError) {
+        console.error("Error sending admin notification email:", emailError);
+        // We don't want to fail the request if just the email fails
+      }
+      
+      // Send confirmation email to the user
+      try {
+        const confirmationSent = await sendContactConfirmation(contactMessage);
+        console.log("Confirmation email sent to user:", confirmationSent);
+      } catch (emailError) {
+        console.error("Error sending confirmation email:", emailError);
+        // We don't want to fail the request if just the email fails
+      }
       
       return res.status(200).json({ 
         message: "Contact form submitted successfully",
